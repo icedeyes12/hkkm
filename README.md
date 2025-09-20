@@ -1,5 +1,5 @@
 # 🎮 Hikikimo Life
-    ~SIMULASI ORANG GABUT~
+    ~~SIMULASI ORANG GABUT~~
 
 A charming life simulation game where you can farm, fish, raise animals, and build your perfect peaceful life. Experience the joy of simple living in a beautifully crafted world.
 
