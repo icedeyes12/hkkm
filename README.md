@@ -101,7 +101,6 @@ hikikimo_life/
 
 ## 👥 Development Team
 
-Hikikimo Life is brought to you by:
 
 · Namaesa
 · AiharaYuu
