@@ -117,7 +117,7 @@ git --version
 
 # 🆘 Need Help?
 
-Check the [README.md](README.md] for more details or open an issue on the [GitHub Issues page](https://github.com/icedeyes12/hkkm/issues)
+Check the [README.md](README.md) for more details or open an issue on the [GitHub Issues page](https://github.com/icedeyes12/hkkm/issues)
 
 ---
 
