@@ -1,4 +1,4 @@
-# 📦 Install Guide — Hikikimo Life
+.# 📦 Install Guide — Hikikimo Life
 
 Prerequisites
 
@@ -27,7 +27,7 @@ python main.py
 
 Alternative Installation (if you don't have git)
 
-If you don't have git installed, you can download the project directly:
+If you don't have `git` installed, you can download the project directly:
 
 ```bash
 wget https://github.com/icedeyes12/hkkm/archive/refs/heads/main.zip -O hkkm.zip
@@ -42,4 +42,4 @@ Notes
 
 · If `python` doesn't work, try `python3`
 · This build is mainly for testing and preview — gameplay is still under development 🛠️
-· Report any issues on the GitHub Issues page
+· Report any issues on the [GitHub Issues page](https://github.com/icedeyes12/hkkm/issues)
