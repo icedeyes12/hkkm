@@ -1,4 +1,5 @@
-# 🎮 Hikikimo Life - ~SIMULASI ORANG GABUT~
+# 🎮 Hikikimo Life
+    ~SIMULASI ORANG GABUT~
 
 A charming life simulation game where you can farm, fish, raise animals, and build your perfect peaceful life. Experience the joy of simple living in a beautifully crafted world.
 
@@ -26,15 +27,16 @@ A charming life simulation game where you can farm, fish, raise animals, and bui
 
 1. **Clone the repository**:
  
-   ```bash
+```bash
    git clone https://github.com/icedeyes12/hkkm.git
    cd hkkm
-   ```
+```
 
 2. Run the game:
-   ```bash
+
+```bash
    python main.py
-   ```
+```
 
 Note: If python doesn't work, try python3
 
