@@ -1,0 +1,322 @@
+# main.py
+import os
+import sys
+import platform
+from modules import login
+from modules.leaderboard import display_leaderboard, update_user_leaderboard
+
+
+# --- Clear Terminal Function ---
+def clear_terminal():
+    """Clear the terminal screen cross-platform"""
+    if platform.system() == "Windows":
+        os.system('cls')
+    else:
+        os.system('clear')
+
+# --- Temporary stub actions ---
+def do_stub(action, path=""): 
+    print(f"[Stub] {action} triggered from {path}")
+
+# ---------------- GLOBAL INPUT ----------------
+def get_choice(prompt="> "):
+    choice = input(prompt).strip().lower()
+    
+    # code detection for test mode
+    if choice in ["𓂸", "titit"]:
+        return "testmode"
+    
+    if choice == "exit":
+        print("👋 Exiting game...")
+        sys.exit(0)
+    return choice
+
+# ---------------- UI HELPERS ----------------
+def print_header(profile, section=""):
+    print("\n♨️ Hikikimo Life")
+    print(f"👤 {profile['nickname']} | 🪙 {profile['balance']} | ⭐ {profile['xp']} XP | 🔼 Lv {profile['level']}")
+    if section:
+        print(f"\n[{section}]")
+
+def print_footer():
+    print("\n-----------------------------")
+    print("2025 hkkm project | built with love 💕")
+    print("namaesa")
+    print("AiharaYuu")
+    print("mada")
+    print("AoKujira")
+
+# ---------------- LOGIN MENU ----------------
+def login_menu():
+    while True:
+        clear_terminal()
+        print("\n# ---------------- LOGIN ----------------")
+        print("1) Login")
+        print("2) Create Account")
+        print("3) Guest")
+        print("0) Exit")
+
+        choice = get_choice()
+
+        if choice == "1":
+            uid, profile = login.login()
+            if profile:
+                return uid, profile
+
+        elif choice == "2":
+            uid, profile = login.create_account()
+            if profile:
+                return uid, profile
+
+        elif choice == "3":
+            return login.guest()
+
+        elif choice == "0":
+            print("👋 Goodbye!")
+            exit()
+
+        else:
+            print("⚠️ Invalid choice.")
+
+# ---------------- JOB CENTER ----------------
+def jobcenter_menu(profile):
+    while True:
+        clear_terminal()
+        print_header(profile, "Main > Job Center")
+        print("1) Work")
+        print("2) Trade")
+        print("3) Crime")
+        print("9) Back")
+        print_footer()
+
+        choice = get_choice()
+        if choice == "1": do_stub("Job: Work", "Main > Job Center")
+        elif choice == "2": do_stub("Job: Trade", "Main > Job Center")
+        elif choice == "3": do_stub("Job: Crime", "Main > Job Center")
+        elif choice == "9": return
+        else: print("Invalid choice!")
+
+# ---------------- CASINO ----------------
+def casino_menu(profile):
+    while True:
+        clear_terminal()
+        print_header(profile, "Main > Casino")
+        print("1) Slots")
+        print("2) Blackjack")
+        print("3) Roulette")
+        print("9) Back")
+        print_footer()
+
+        choice = get_choice()
+        if choice == "1": slots_menu(profile)
+        elif choice == "2": blackjack_menu(profile)
+        elif choice == "3": roulette_menu(profile)
+        elif choice == "9": return
+        else: print("Invalid choice!")
+
+def slots_menu(profile):
+    clear_terminal()
+    print_header(profile, "Main > Casino > Slots")
+    do_stub("Place Bet → Spin → Results", "Main > Casino > Slots")
+    print_footer()
+    input("Press Enter to return...")
+
+def blackjack_menu(profile):
+    clear_terminal()
+    print_header(profile, "Main > Casino > Blackjack")
+    do_stub("Place Bet → Deal → Actions (Hit/Stand/Double/Split) → Dealer → Results", "Main > Casino > Blackjack")
+    print_footer()
+    input("Press Enter to return...")
+
+def roulette_menu(profile):
+    clear_terminal()
+    print_header(profile, "Main > Casino > Roulette")
+    do_stub("Place Bet → Choose (Red/Black, Odd/Even, Number) → Spin → Results", "Main > Casino > Roulette")
+    print_footer()
+    input("Press Enter to return...")
+
+# ---------------- YARD ----------------
+def yard_menu(profile):
+    while True:
+        clear_terminal()
+        print_header(profile, "Main > Yard")
+        print("1) Field")
+        print("2) Barn")
+        print("9) Back")
+        print_footer()
+
+        choice = get_choice()
+        if choice == "1": field_menu(profile)
+        elif choice == "2": barn_menu(profile)
+        elif choice == "9": return
+        else: print("Invalid choice!")
+
+def field_menu(profile):
+    clear_terminal()
+    print_header(profile, "Main > Yard > Field")
+    do_stub("Plots menu (Plant, Water, Harvest, Remove Dead)", "Main > Yard > Field")
+    print_footer()
+    input("Press Enter to return...")
+
+def barn_menu(profile):
+    clear_terminal()
+    print_header(profile, "Main > Yard > Barn")
+    do_stub("Slots menu (Feed, Collect Products, Animal Info)", "Main > Yard > Barn")
+    print_footer()
+    input("Press Enter to return...")
+
+# ---------------- FISHING ----------------
+def fishing_menu(profile):
+    while True:
+        clear_terminal()
+        print_header(profile, "Main > Fishing")
+        print("1) Small Pond")
+        print("2) River")
+        print("3) Lake")
+        print("4) Ocean")
+        print("9) Back")
+        print_footer()
+
+        choice = get_choice()
+        if choice in ["1","2","3","4"]:
+            do_stub("Fishing: Site selected → Change Equipment / Fish", "Main > Fishing")
+        elif choice == "9": return
+        else: print("Invalid choice!")
+
+# ---------------- MY ROOM ----------------
+def myroom_menu(profile):
+    while True:
+        clear_terminal()
+        print_header(profile, "Main > My Room")
+        print("1) Profile Overview")
+        print("2) Inventory")
+        print("9) Back")
+        print_footer()
+
+        choice = get_choice()
+        if choice == "1": do_stub("Profile Overview", "Main > My Room")
+        elif choice == "2": inventory_menu(profile)
+        elif choice == "9": return
+        else: print("Invalid choice!")
+
+def inventory_menu(profile):
+    while True:
+        clear_terminal()
+        print_header(profile, "Main > My Room > Inventory")
+        print("1) Items & Tools")
+        print("2) Caught Fish")
+        print("3) Farm Products")
+        print("9) Back")
+        print_footer()
+
+        choice = get_choice()
+        if choice == "1": do_stub("Inventory: Items & Tools", "Main > My Room > Inventory")
+        elif choice == "2": do_stub("Inventory: Caught Fish", "Main > My Room > Inventory")
+        elif choice == "3": do_stub("Inventory: Farm Products", "Main > My Room > Inventory")
+        elif choice == "9": return
+        else: print("Invalid choice!")
+
+# ---------------- SHOP ----------------
+def shop_menu(profile):
+    while True:
+        clear_terminal()
+        print_header(profile, "Main > Shop")
+        print("1) Seeds")
+        print("2) Feed")
+        print("3) Tools / Equipment")
+        print("4) Baits")
+        print("9) Back")
+        print_footer()
+
+        choice = get_choice()
+        if choice == "1": do_stub("Shop: Seeds", "Main > Shop")
+        elif choice == "2": do_stub("Shop: Feed", "Main > Shop")
+        elif choice == "3": do_stub("Shop: Tools / Equipment", "Main > Shop")
+        elif choice == "4": do_stub("Shop: Baits", "Main > Shop")
+        elif choice == "9": return
+        else: print("Invalid choice!")
+
+# ---------------- DAILY ----------------
+def daily_menu(profile):
+    while True:
+        clear_terminal()
+        print_header(profile, "Main > Daily Rewards")
+        print("1) Claim Reward")
+        print("9) Back")
+        print_footer()
+
+        choice = get_choice()
+        if choice == "1": do_stub("Claim Daily Reward", "Main > Daily Rewards")
+        elif choice == "9": return
+        else: print("Invalid choice!")
+
+# ---------------- LEADERBOARD ----------------
+def leaderboard_menu(profile):
+    while True:
+        clear_terminal()
+        print_header(profile, "Main > Leaderboard")
+        print("1) Top XP")
+        print("2) Top Wealth")
+        print("9) Back")
+        print_footer()
+
+        choice = get_choice()
+        if choice == "1": do_stub("Leaderboard: Top XP", "Main > Leaderboard")
+        elif choice == "2": do_stub("Leaderboard: Top Wealth", "Main > Leaderboard")
+        elif choice == "9": return
+        else: print("Invalid choice!")
+
+# ---------------- TEST MODULE ----------------
+def test_module(profile):
+    """Hidden test module accessible via cheat codes"""
+    try:
+        # Try to import the test center
+        from modules.test import test_center
+        test_center(profile)
+    except ImportError as e:
+        print(f"Test module not available yet! Error: {e}")
+        input("Press Enter to continue...")
+
+# ---------------- MAIN MENU ----------------
+def main_menu(profile):
+    while True:
+        clear_terminal()
+        print_header(profile, "Main")
+        print("1) Job Center")
+        print("2) Casino")
+        print("3) Yard")
+        print("4) Fishing")
+        print("5) My Room")
+        print("6) Shop")
+        print("7) Daily Rewards & Streak")
+        print("8) Leaderboard")
+        print("9) Logout")
+        print_footer()
+
+        choice = get_choice()
+        
+        # Check for cheat code to access test module
+        if choice == "testmode":
+            test_module(profile)
+            continue
+            
+        if choice == "1": jobcenter_menu(profile)
+        elif choice == "2": casino_menu(profile)
+        elif choice == "3": yard_menu(profile)
+        elif choice == "4": fishing_menu(profile)
+        elif choice == "5": myroom_menu(profile)
+        elif choice == "6": shop_menu(profile)
+        elif choice == "7": daily_menu(profile)
+        elif choice == "8": display_leaderboard(profile)
+        elif choice == "9":
+            print("Logging out...")
+            return
+        else:
+            print("Invalid choice!")
+
+# ---------------- ENTRY POINT ----------------
+if __name__ == "__main__":
+    while True:
+        uid, profile = login_menu()
+        if profile:
+            main_menu(profile)

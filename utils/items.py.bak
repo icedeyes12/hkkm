@@ -1,0 +1,18 @@
+def get_all_items():
+    return {
+        "tools": [
+            {"name": "Basic Watering Can", "price": 50},
+            {"name": "Advanced Watering Can", "price": 120},
+            {"name": "Hoe", "price": 30}
+        ],
+        "rods": [
+            {"name": "Wooden Rod", "price": 20},
+            {"name": "Iron Rod", "price": 50},
+            {"name": "Golden Rod", "price": 120}
+        ],
+        "baits": [
+            {"name": "Worm", "price": 2},
+            {"name": "Insect", "price": 5},
+            {"name": "Shrimp", "price": 10}
+        ]
+    }

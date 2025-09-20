@@ -1,0 +1,8 @@
+def get_config():
+    return {
+        "version": "0.1.0",
+        "economy": {
+            "currency": "🪙",
+            "starting_balance": 500
+        }
+    }

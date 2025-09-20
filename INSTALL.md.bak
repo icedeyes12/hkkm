@@ -1,0 +1,45 @@
+📦 Install Guide — Hikikimo Life
+
+Prerequisites
+
+· Python 3.8 or higher
+· pip package manager (usually comes with Python)
+· git installed on your system
+
+---
+
+Setup
+
+Clone the repository
+
+```bash
+git clone https://github.com/icedeyes12/hkkm.git
+cd hkkm
+```
+
+Run the game
+
+```bash
+python main.py
+```
+
+---
+
+Alternative Installation (if you don't have git)
+
+If you don't have git installed, you can download the project directly:
+
+```bash
+wget https://github.com/icedeyes12/hkkm/archive/refs/heads/main.zip -O hkkm.zip
+unzip hkkm.zip
+cd hkkm-main
+python main.py
+```
+
+---
+
+Notes
+
+· If python doesn't work, try python3
+· This build is mainly for testing and preview — gameplay is still under development 🛠️
+· Report any issues on the GitHub Issues page

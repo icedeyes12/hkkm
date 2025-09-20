@@ -1,0 +1,118 @@
+# modules/test.py
+import time
+from utils.db import read_db, write_db
+from utils.economy import add_balance, deduct_balance, add_xp
+from utils.helpers import format_currency
+from utils.config import get_config
+from utils.items import get_all_items
+
+def test_center(profile):
+    """Hidden test center accessible via cheat code"""
+    print("\n" + "="*60)
+    print("𓀐 𓂸")  # New header as requested
+    print("="*60)
+    
+    while True:
+        print(f"\n👤 {profile['nickname']} | 🪙 {profile['balance']} | ⭐ {profile['xp']} XP | 🔼 Lv {profile['level']}")
+        print("\n1) Add Coins")
+        print("2) Deduct Coins")
+        print("3) Add XP")
+        print("4) Level Up")
+        print("5) Show Profile Data")
+        print("6) Show Game Config")
+        print("7) Show All Items")
+        print("8) Reset Progress")
+        print("9) Save & Exit")
+        print("0) Exit Without Saving")
+
+        choice = input("\nTest option: ").strip()
+        
+        if choice == "1":
+            try:
+                amt = int(input("Amount to add: ") or "1000")
+                if add_balance(profile, amt):
+                    print(f"✅ Added {format_currency(amt)}")
+                else:
+                    print("❌ Failed to add coins")
+            except ValueError:
+                print("⚠️ Please enter a valid number")
+
+        elif choice == "2":
+            try:
+                amt = int(input("Amount to deduct: ") or "100")
+                if deduct_balance(profile, amt):
+                    print(f"✅ Deducted {format_currency(amt)}")
+                else:
+                    print("❌ Not enough coins")
+            except ValueError:
+                print("⚠️ Please enter a valid number")
+
+        elif choice == "3":
+            try:
+                amt = int(input("XP to add: ") or "100")
+                leveled_up, message = add_xp(profile, amt)
+                print(f"✅ Added {amt} XP")
+                if leveled_up:
+                    print(f"🎉 {message}")
+            except ValueError:
+                print("⚠️ Please enter a valid number")
+
+        elif choice == "4":
+            # Force level up
+            needed_xp = (profile['level'] * 100) - profile['xp']
+            leveled_up, message = add_xp(profile, needed_xp + 1)
+            if leveled_up:
+                print(f"🎉 {message}")
+            else:
+                print("❌ Level up calculation failed")
+
+        elif choice == "5":
+            print("\n--- PROFILE DATA ---")
+            for key, value in profile.items():
+                print(f"{key}: {value}")
+
+        elif choice == "6":
+            config = get_config()
+            print("\n--- GAME CONFIG ---")
+            print(f"Version: {config.get('version', 'N/A')}")
+            print(f"Currency: {config.get('economy', {}).get('currency', 'N/A')}")
+            print(f"Starting Balance: {config.get('economy', {}).get('starting_balance', 'N/A')}")
+
+        elif choice == "7":
+            items = get_all_items()
+            print("\n--- ALL ITEMS ---")
+            for category, item_list in items.items():
+                print(f"\n{category.upper()}:")
+                for item in item_list:
+                    print(f"  {item['name']} - {format_currency(item.get('price', 0))}")
+
+        elif choice == "8":
+            confirm = input("⚠️  RESET ALL PROGRESS? (type 'RESET' to confirm): ")
+            if confirm == "RESET":
+                profile.update({
+                    "xp": 0,
+                    "level": 1,
+                    "balance": 500,
+                    "inventory": {}
+                })
+                print("✅ Progress reset to default")
+            else:
+                print("Reset cancelled")
+
+        elif choice == "9":
+            # Save changes
+            users = read_db("users")
+            if profile["id"] in users and profile["id"] != "guest":
+                users[profile["id"]] = profile
+                write_db("users", users)
+                print("💾 Changes saved to database")
+            return
+
+        elif choice == "0":
+            print("Exiting without saving...")
+            return
+
+        else:
+            print("❌ Invalid option")
+        
+        time.sleep(1)  # Brief pause

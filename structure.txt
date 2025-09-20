@@ -1,0 +1,48 @@
+.
+├── INSTALL.md
+├── INSTALL.md.bak
+├── README.md
+├── README.md.bak
+├── db
+│   ├── animals.json
+│   ├── animals.json.bak
+│   ├── config.json
+│   ├── config.json.bak
+│   ├── cropsdb.json
+│   ├── cropsdb.json.bak
+│   ├── fishdb.json
+│   ├── fishdb.json.bak
+│   ├── items.json
+│   ├── items.json.bak
+│   ├── leaderboard.json
+│   └── leaderboard.json.bak
+├── main.py
+├── main.py.bak
+├── modules
+│   ├── inventory.py
+│   ├── leaderboard.py
+│   ├── login.py
+│   ├── login.py.bak
+│   ├── test.py
+│   └── test.py.bak
+├── structure.txt
+└── utils
+    ├── __init__.py
+    ├── config.py
+    ├── config.py.bak
+    ├── db.py
+    ├── db.py.bak
+    ├── economy.py
+    ├── economy.py.bak
+    ├── game_data.py
+    ├── game_data.py.bak
+    ├── helpers.py
+    ├── helpers.py.bak
+    ├── inventory_utils.py
+    ├── inventory_utils.py.bak
+    ├── items.py
+    ├── items.py.bak
+    ├── unlocks.py
+    └── utils.py
+
+4 directories, 42 files

@@ -1,0 +1,46 @@
+{
+  // ---------------- Tools ----------------
+  "tools": [
+    {"id": 11, "type": "tool", "name": "Basic Watering Can", "buffer_time": 300, "price": 50},
+    {"id": 12, "type": "tool", "name": "Advanced Watering Can", "buffer_time": 600, "price": 120},
+    {"id": 13, "type": "tool", "name": "Hoe", "price": 30}
+  ],
+
+  // ---------------- Rods ----------------
+  "rods": [
+    {"id": 21, "type": "rod", "name": "Wooden Rod", "catch_bonus": 5, "price": 20},
+    {"id": 22, "type": "rod", "name": "Iron Rod", "catch_bonus": 10, "price": 50},
+    {"id": 23, "type": "rod", "name": "Golden Rod", "catch_bonus": 20, "price": 120}
+  ],
+
+  // ---------------- Baits ----------------
+  "baits": [
+    {"id": 31, "type": "bait", "name": "Worm", "rarity_bonus": 5, "price": 2},
+    {"id": 32, "type": "bait", "name": "Insect", "rarity_bonus": 10, "price": 5},
+    {"id": 33, "type": "bait", "name": "Shrimp", "rarity_bonus": 15, "price": 10}
+  ],
+
+  // ---------------- Seeds ----------------
+  "seeds": [
+    {"id": 501, "type": "seed", "name": "Lettuce Seed", "crop": "Lettuce", "price": 5},
+    {"id": 502, "type": "seed", "name": "Spinach Seed", "crop": "Spinach", "price": 5},
+    {"id": 503, "type": "seed", "name": "Radish Seed", "crop": "Radish", "price": 4},
+    {"id": 504, "type": "seed", "name": "Carrot Seed", "crop": "Carrot", "price": 4},
+    {"id": 505, "type": "seed", "name": "Onion Seed", "crop": "Onion", "price": 5},
+    {"id": 506, "type": "seed", "name": "Tomato Seed", "crop": "Tomato", "price": 6},
+    {"id": 507, "type": "seed", "name": "Cucumber Seed", "crop": "Cucumber", "price": 6},
+    {"id": 508, "type": "seed", "name": "Potato Seed", "crop": "Potato", "price": 5},
+    {"id": 509, "type": "seed", "name": "Pepper Seed", "crop": "Pepper", "price": 7},
+    {"id": 510, "type": "seed", "name": "Eggplant Seed", "crop": "Eggplant", "price": 8},
+    {"id": 511, "type": "seed", "name": "Corn Seed", "crop": "Corn", "price": 7},
+    {"id": 512, "type": "seed", "name": "Pumpkin Seed", "crop": "Pumpkin", "price": 10},
+    {"id": 513, "type": "seed", "name": "Wheat Seed", "crop": "Wheat", "price": 6}
+  ],
+
+  // ---------------- Feeds ----------------
+  "feeds": [
+    {"id": 601, "type": "feed", "name": "Wheat", "buffer_time": 1200, "happiness_rate": 25, "price": 5},
+    {"id": 602, "type": "feed", "name": "Corn", "buffer_time": 2400, "happiness_rate": 50, "price": 10},
+    {"id": 603, "type": "feed", "name": "Mystic Feed", "buffer_time": 3600, "happiness_rate": 100, "price": 50}
+  ]
+}

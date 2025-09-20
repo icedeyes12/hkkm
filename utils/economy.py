@@ -1,0 +1,89 @@
+# utils/economy.py
+from utils.db import update_user_data
+from utils.config import get_xp_for_level
+from modules.leaderboard import update_user_leaderboard
+
+def add_balance(profile, amount):
+    """Add money to user's balance with database update"""
+    new_balance = profile.get("balance", 0) + amount
+    success = update_user_data(profile["id"], {"balance": new_balance})
+    if success:
+        profile["balance"] = new_balance
+        update_user_leaderboard(profile)  # Update leaderboard after balance change
+    return success
+
+def deduct_balance(profile, amount):
+    """Deduct money from user's balance if they have enough"""
+    if profile.get("balance", 0) >= amount:
+        new_balance = profile["balance"] - amount
+        success = update_user_data(profile["id"], {"balance": new_balance})
+        if success:
+            profile["balance"] = new_balance
+            update_user_leaderboard(profile)  # Update leaderboard after balance change
+        return success
+    return False
+
+def add_xp(profile, amount):
+    """Add XP to user and handle multiple level ups with configurable XP curve"""
+    current_xp = profile.get("xp", 0)
+    current_level = profile.get("level", 1)
+    
+    # Calculate total XP after addition
+    total_xp = current_xp + amount
+    levels_gained = 0
+    xp_remaining = total_xp
+    
+    # Calculate how many levels are gained using configurable XP curve
+    while True:
+        xp_needed = get_xp_for_level(current_level + levels_gained)
+        if xp_remaining >= xp_needed:
+            xp_remaining -= xp_needed
+            levels_gained += 1
+        else:
+            break
+    
+    if levels_gained > 0:
+        # Update level and XP
+        new_level = current_level + levels_gained
+        profile["level"] = new_level
+        profile["xp"] = xp_remaining
+        
+        # Save to database
+        success = update_user_data(profile["id"], {
+            "xp": xp_remaining,
+            "level": new_level
+        })
+        
+        if success:
+            update_user_leaderboard(profile)  # Update leaderboard after level up
+            message = f"Level up! You're now level {new_level}"
+            if levels_gained > 1:
+                message = f"Level up! Gained {levels_gained} levels → now level {new_level}"
+            return True, message
+    
+    # If no level up, just update XP
+    profile["xp"] = xp_remaining
+    success = update_user_data(profile["id"], {"xp": xp_remaining})
+    
+    if success:
+        update_user_leaderboard(profile)  # Update leaderboard after XP gain
+    
+    return False, None
+
+def get_xp_for_next_level(profile):
+    """Calculate XP needed for next level"""
+    return get_xp_for_level(profile["level"]) - profile["xp"]
+
+def calculate_sell_price(base_price, quality=1.0):
+    """Calculate sell price with configurable multiplier"""
+    from utils.config import get_economy_settings
+    economy = get_economy_settings()
+    sell_multiplier = economy.get("sell_multiplier", 1.0)
+    return int(base_price * sell_multiplier * quality)
+
+def calculate_xp_gain(base_xp, multiplier=1.0):
+    """Calculate XP gain with configurable multiplier"""
+    from utils.config import get_economy_settings
+    economy = get_economy_settings()
+    xp_multiplier = economy.get("xp_multiplier", 1.0) * multiplier
+    return int(base_xp * xp_multiplier)

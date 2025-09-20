@@ -1,0 +1,30 @@
+{
+  "fish": [
+    // ---------------- Pond ----------------
+    {"id": 101, "name": "Small Carp", "rarity": "common", "base_price": 5, "xp": 2, "weight_range": [1, 2], "habitat": "pond"},
+    {"id": 102, "name": "Small Minnow", "rarity": "common", "base_price": 3, "xp": 1, "weight_range": [0.1, 0.3], "habitat": "pond"},
+    {"id": 103, "name": "Goldfish", "rarity": "common", "base_price": 5, "xp": 2, "weight_range": [0.5, 1], "habitat": "pond"},
+    {"id": 104, "name": "Large Catfish", "rarity": "rare", "base_price": 25, "xp": 15, "weight_range": [3, 5], "habitat": "pond"},
+    {"id": 105, "name": "Golden Carp", "rarity": "rare", "base_price": 30, "xp": 20, "weight_range": [2.5, 4.5], "habitat": "pond"},
+
+    // ---------------- River ----------------
+    {"id": 201, "name": "Trout", "rarity": "uncommon", "base_price": 12, "xp": 6, "weight_range": [1, 3], "habitat": "river"},
+    {"id": 202, "name": "Salmon", "rarity": "uncommon", "base_price": 15, "xp": 8, "weight_range": [2, 4], "habitat": "river"},
+    {"id": 203, "name": "Medium Catfish", "rarity": "uncommon", "base_price": 12, "xp": 6, "weight_range": [2, 3.5], "habitat": "river"},
+    {"id": 204, "name": "River Spirit Fish", "rarity": "legendary", "base_price": 90, "xp": 45, "weight_range": [8, 15], "habitat": "river"},
+    {"id": 205, "name": "Mythic Salmon", "rarity": "legendary", "base_price": 80, "xp": 40, "weight_range": [7, 12], "habitat": "river"},
+
+    // ---------------- Lake ----------------
+    {"id": 301, "name": "Sturgeon", "rarity": "rare", "base_price": 35, "xp": 22, "weight_range": [4, 7], "habitat": "lake"},
+    {"id": 302, "name": "Barramundi", "rarity": "rare", "base_price": 32, "xp": 20, "weight_range": [3.5, 6], "habitat": "lake"},
+    {"id": 303, "name": "Ancient Leviathan", "rarity": "legendary", "base_price": 100, "xp": 50, "weight_range": [10, 20], "habitat": "lake"},
+    {"id": 304, "name": "Celestial Bass", "rarity": "legendary", "base_price": 85, "xp": 42, "weight_range": [8, 14], "habitat": "lake"},
+
+    // ---------------- Ocean ----------------
+    {"id": 401, "name": "Tuna", "rarity": "uncommon", "base_price": 20, "xp": 10, "weight_range": [5, 10], "habitat": "ocean"},
+    {"id": 402, "name": "Swordfish", "rarity": "rare", "base_price": 45, "xp": 25, "weight_range": [15, 30], "habitat": "ocean"},
+    {"id": 403, "name": "Great White Shark", "rarity": "rare", "base_price": 70, "xp": 40, "weight_range": [50, 100], "habitat": "ocean"},
+    {"id": 404, "name": "Kraken", "rarity": "legendary", "base_price": 150, "xp": 80, "weight_range": [200, 500], "habitat": "ocean"},
+    {"id": 405, "name": "Sea Serpent", "rarity": "legendary", "base_price": 200, "xp": 100, "weight_range": [300, 700], "habitat": "ocean"}
+  ]
+}

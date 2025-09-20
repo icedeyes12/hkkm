@@ -1,0 +1,91 @@
+# utils/helpers.py
+import os
+import platform
+import random
+import time
+from utils.config import get_economy_settings
+
+def clear_terminal():
+    """Clear the terminal screen cross-platform"""
+    if platform.system() == "Windows":
+        os.system('cls')
+    else:
+        os.system('clear')
+
+def format_currency(amount):
+    """Format a number as currency without duplicate symbols"""
+    economy = get_economy_settings()
+    currency_symbol = economy.get("currency", "🪙")
+    
+    # Ensure amount is a number, not a string
+    if isinstance(amount, str):
+        # Remove any existing currency symbols and convert to number
+        amount = amount.replace(currency_symbol, '').strip()
+        try:
+            amount = int(amount)
+        except ValueError:
+            amount = 0
+    
+    return f"{currency_symbol}{amount}"
+
+def print_separator():
+    """Print a visual separator"""
+    print("\n" + "="*50 + "\n")
+
+def calculate_xp_gain(base_xp, multiplier=1.0):
+    """Calculate XP gain with multiplier"""
+    economy = get_economy_settings()
+    xp_multiplier = economy.get("xp_multiplier", 1.0) * multiplier
+    return int(base_xp * xp_multiplier)
+
+def calculate_sell_price(base_price, multiplier=1.0):
+    """Calculate sell price with multiplier"""
+    economy = get_economy_settings()
+    sell_multiplier = economy.get("sell_multiplier", 1.0) * multiplier
+    return int(base_price * sell_multiplier)
+
+def get_random_fish(habitat, rod_bonus=0, bait_bonus=0):
+    """Get a random fish based on habitat and equipment bonuses"""
+    from utils.game_data import get_fish_by_habitat
+    fish_list = get_fish_by_habitat(habitat)
+    
+    if not fish_list:
+        return None
+    
+    # Calculate catch chance based on equipment
+    total_bonus = rod_bonus + bait_bonus
+    catch_chance = min(90, 50 + total_bonus)  # Cap at 90%
+    
+    if random.randint(1, 100) <= catch_chance:
+        # Weighted random selection based on rarity
+        rarity_weights = {
+            "common": 60,
+            "uncommon": 25,
+            "rare": 10,
+            "legendary": 5
+        }
+        
+        weighted_fish = []
+        for fish in fish_list:
+            weight = rarity_weights.get(fish.get("rarity", "common"), 10)
+            weighted_fish.extend([fish] * weight)
+        
+        return random.choice(weighted_fish)
+    else:
+        return None  # Failed to catch anything
+
+def format_time(seconds):
+    """Format seconds into a readable time string"""
+    if seconds < 60:
+        return f"{seconds}s"
+    elif seconds < 3600:
+        return f"{seconds // 60}m {seconds % 60}s"
+    else:
+        return f"{seconds // 3600}h {(seconds % 3600) // 60}m"
+
+def progress_bar(current, total, length=20):
+    """Create a progress bar visualization"""
+    progress = min(current / total, 1.0)
+    filled_length = int(length * progress)
+    bar = "█" * filled_length + "░" * (length - filled_length)
+    return f"[{bar}] {int(progress * 100)}%"

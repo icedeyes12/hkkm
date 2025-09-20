@@ -1,0 +1,41 @@
+{
+  "version": "0.1.0",
+  "economy": {
+    "currency": "🪙",
+    "starting_balance": 500,
+    "max_level": 15,
+    "xp_curve": {
+      "base": 100,
+      "scaling": 1.2
+    },
+    "sell_multiplier": 1.0,
+    "xp_multiplier": 1.0
+  },
+  "unlock": {
+    "field": {
+      "plots": {
+        "1": {"level": 1, "price": 0},
+        "2": {"level": 2, "price": 200},
+        "3": {"level": 4, "price": 400},
+        "4": {"level": 6, "price": 600}
+      }
+    },
+    "barn": {
+      "slots": {
+        "1": {"level": 1, "price": 0},
+        "2": {"level": 3, "price": 300},
+        "3": {"level": 5, "price": 500}
+      }
+    },
+    "fishing_sites": {
+      "pond": {"level": 1, "price": 0},
+      "river": {"level": 2, "price": 200},
+      "lake": {"level": 4, "price": 500},
+      "ocean": {"level": 8, "price": 1000}
+    }
+  },
+  "casino": {
+    "min_bet": 10,
+    "max_bet": 500
+  }
+}
