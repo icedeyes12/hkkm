@@ -134,7 +134,7 @@ Please check the [GitHub Issues page](https://github.com/icedeyes12/hkkm/issues)
 ## 📞 Support
 
 If you have any questions or need help, please don't ask me, I don't know what I'm doing here 🤷‍♂️
-
+I also need help 😭
 ---
 
 Enjoy your peaceful life in Hikikimo! 🌿🐟🌻
