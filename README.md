@@ -46,7 +46,7 @@ For detailed installation instructions, see INSTALL.md.
 
 ## 🎯 How to Play
 
-Note: This build is for testing and preview purposes only. Full gameplay is still under development 🛠️.
+`Note: This build is for testing and preview purposes only. Full gameplay is still under development 🛠️.`
 
 Currently available features:
 
@@ -57,7 +57,7 @@ Currently available features:
 
 Cheat Codes:
 
-· Type titit or 𓂸 at the main menu to access the test center
+· Type `titit` or `𓂸` at the main menu to access the test center
 · Test features include adding coins, XP, and resetting progress
 > **Note**: If `python` doesn't work, try `python3`
 
