@@ -1,4 +1,4 @@
-.# 📦 Install Guide — Hikikimo Life
+# 📦 Install Guide — Hikikimo Life
 
 Prerequisites
 
@@ -38,7 +38,7 @@ python main.py
 
 ---
 
-Notes
+# Notes
 
 · If `python` doesn't work, try `python3`
 · This build is mainly for testing and preview — gameplay is still under development 🛠️
