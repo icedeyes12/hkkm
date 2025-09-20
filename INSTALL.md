@@ -40,6 +40,6 @@ python main.py
 
 Notes
 
-· If python doesn't work, try python3
+· If `python` doesn't work, try `python3`
 · This build is mainly for testing and preview — gameplay is still under development 🛠️
 · Report any issues on the GitHub Issues page
