@@ -38,7 +38,7 @@ A charming life simulation game where you can farm, fish, raise animals, and bui
    python main.py
 ```
 
-Note: If python doesn't work, try python3
+> Note: If python doesn't work, try python3
 
 For detailed installation instructions, see [INSTALL.md](INSTALL.md).
 
@@ -59,7 +59,6 @@ Cheat Codes:
 
 · Type `titit` or `𓂸` at the main menu to access the test center
 · Test features include adding coins, XP, and resetting progress
-> **Note**: If `python` doesn't work, try `python3`
 
 
 ---
