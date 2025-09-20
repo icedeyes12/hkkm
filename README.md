@@ -23,13 +23,15 @@ A charming life simulation game where you can farm, fish, raise animals, and bui
 - Git installed on your system
 
 ### Installation
+
 1. **Clone the repository**:
+ 
    ```bash
    git clone https://github.com/icedeyes12/hkkm.git
    cd hkkm
-```
+   ```
 
-1. Run the game:
+2. Run the game:
    ```bash
    python main.py
    ```
@@ -40,7 +42,7 @@ For detailed installation instructions, see INSTALL.md.
 
 ---
 
-🎯 How to Play
+## 🎯 How to Play
 
 Note: This build is for testing and preview purposes only. Full gameplay is still under development 🛠️.
 
@@ -61,22 +63,7 @@ For detailed installation instructions, see [INSTALL.md](INSTALL.md).
 
 ---
 
-## 🎯 How to Play
-
-> **Note**: This build is for testing and preview purposes only. Full gameplay is still under development 🛠️.
-
-**Currently available features**:
-- Create an account or play as a guest
-- Navigate the menus (`Job Center`, `Casino`, `Yard`, `Fishing`, `My Room`, `Shop`, `Daily`, `Leaderboard`)
-- Trigger stub actions that show what features will look like
-- Try the hidden cheat codes to access the test center
-
-**Cheat Codes**:
-- Type `titit` or `𓂸` at the main menu to access the test center
-- Test features include adding coins, XP, and resetting progress
----
-
-##🏗️ Project Structure
+## 🏗️ Project Structure
 
 ```
 hikikimo_life/
@@ -110,7 +97,7 @@ hikikimo_life/
 
 ---
 
-##👥 Development Team
+## 👥 Development Team
 
 Hikikimo Life is brought to you by:
 
@@ -152,4 +139,4 @@ If you have any questions or need help, please don't ask me, I don't know what I
 ---
 
 Enjoy your peaceful life in Hikikimo! 🌿🐟🌻
-Built with love and 愛(ai) for the gaming community 💕
+Built with love and 愛(ai) for the gaming community 💕,
