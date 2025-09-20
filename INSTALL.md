@@ -46,9 +46,13 @@ python main.py
 ## 1. Download and Extract
 
 ```bash
-wget https://github.com/icedeyes12/hkkm/archive/refs/heads/main.zip -O hkkm.zip
-unzip hkkm.zip
-cd hkkm-main
+apt update && apt upgrade -y
+apt install -y python unzip wget
+
+wget "https://github.com/icedeyes12/hkkm/archive/refs/heads/main.zip" -O hkkm.zip
+unzip hkkm.zip -d hkkm
+rm hkkm.zip
+cd hkkm/hkkm-main
 ```
 
 ## 2. Install Python Requirements
