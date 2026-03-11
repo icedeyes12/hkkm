@@ -9,7 +9,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent / "src"))
 
 from src.db.sqlite_manager import SQLiteManager, init_database
-from src.db.seed_data.game_data import get_default_game_data
+from src.db.seed_data.game_data import get_all_seed_data as get_default_game_data
 from src.config.settings import get_settings
 
 
