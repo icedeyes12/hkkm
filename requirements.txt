@@ -1,0 +1,10 @@
+# Production dependencies
+# Install with: pip install -r requirements.txt
+
+textual>=0.50.0
+pydantic>=2.5
+pydantic-settings>=2.1
+rich>=13.7
+platformdirs>=4.0
+click>=8.1
+bcrypt>=4.0
