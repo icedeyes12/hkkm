@@ -5,6 +5,28 @@ A charming life simulation game where you can farm, fish, raise animals, and bui
 
 ---
 
+## 🆕 Version 2.0 - TUI Modernization
+
+**This repository now contains the new TUI (Terminal User Interface) version** built with Python 3.12 and Textual.
+
+### 🔙 Looking for the Legacy CLI Version?
+
+The original command-line interface version is preserved at the **`legacy`** tag:
+
+```bash
+git checkout legacy
+python main.py
+```
+
+### What's New in v2?
+- Rich TUI with keyboard navigation
+- SQLite backend (replacing JSON files)
+- Cross-platform support (Termux, Windows, Linux, macOS)
+- Modern architecture with proper MVC separation
+- Enhanced features and polished UX
+
+---
+
 ## ✨ Features
 
 - **Fishing**: Catch rare fish in different water bodies
@@ -20,7 +42,7 @@ A charming life simulation game where you can farm, fish, raise animals, and bui
 ## 🚀 Quick Start
 
 ### Prerequisites
-- Python 3.8 or higher
+- Python 3.12 or higher
 - Git installed on your system
 
 ### Installation
@@ -32,13 +54,23 @@ A charming life simulation game where you can farm, fish, raise animals, and bui
    cd hkkm
 ```
 
-2. Run the game:
+2. **Run the new TUI version**:
 
 ```bash
-   python main.py
+   python run.py
+   # Or install and run:
+   pip install -e .
+   hkkm
 ```
 
-> Note: If python doesn't work, try python3
+> Note: First run will create the database and seed game data automatically.
+
+### Running the Legacy Version
+
+```bash
+git checkout legacy
+python main.py
+```
 
 For detailed installation instructions, see [INSTALL.md](INSTALL.md).
 
@@ -65,34 +97,27 @@ Cheat Codes:
 
 ## 🏗️ Project Structure
 
+### v2 TUI Structure (current main branch)
 ```
-hikikimo_life/
-├──main.py                 # Main game loop
-├──INSTALL.md              # Installation guide
-├──README.md               # Documentation
-├──db/                     # Data storage (JSON)
-│├── animals.json        # Animals database
-│├── config.json         # Game configuration
-│├── cropsdb.json        # Crops database
-│├── fishdb.json         # Fish database
-│├── items.json          # Items database
-│└── leaderboard.json    # Leaderboard data
-├──modules/                # Game feature modules
-│├── login.py            # Authentication system
-│├── inventory.py        # Inventory management
-│├── leaderboard.py      # Leaderboard system
-│└── test.py             # Developer test module
-└──utils/                  # Utility functions
-├── db.py               # Database management
-├── economy.py          # Economy system
-├── game_data.py        # Game data access
-├── helpers.py          # Helper functions
-├── inventory_utils.py  # Inventory helpers
-├── items.py            # Item management
-├── unlocks.py          # Unlock system
-├── utils.py            # General utilities
-└── config.py           # Configuration loader
+hkkm/
+├── run.py                 # Quick launcher
+├── src/                   # Source code
+│   ├── tui/              # Textual UI components
+│   ├── core/             # Business logic
+│   ├── db/               # SQLite database
+│   └── config/           # Settings
+├── tests/                 # Test suite
+├── pyproject.toml         # Package config
+└── README_V2.md          # Detailed v2 docs
+```
 
+### Legacy CLI Structure (legacy tag)
+```
+hkkm/
+├── main.py               # Main game loop
+├── db/                   # JSON data storage
+├── modules/              # Game modules
+└── utils/                # Utilities
 ```
 
 ---
