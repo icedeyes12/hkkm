@@ -44,10 +44,8 @@ class WelcomeScreen(Screen):
         elif event.button.id == "btn-register":
             self.app.push_screen(RegisterScreen())
         elif event.button.id == "btn-guest":
-            # Create guest user
-            repo = UserRepository()
+            # Create guest user directly
             guest = User.create_guest()
-            repo.create(guest)
             self.app.post_message(UserLoggedIn(guest))
 
 
@@ -176,8 +174,11 @@ class RegisterScreen(Screen):
             return
 
         try:
-            user = User.create(username=username, nickname=nickname, password=password)
-            self.user_repo.create(user)
+            user = self.user_repo.create(
+                username=username,
+                password=password,
+                nickname=nickname,
+            )
             self.app.post_message(UserLoggedIn(user))
             self.dismiss()
         except Exception as e:

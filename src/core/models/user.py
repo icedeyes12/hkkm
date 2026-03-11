@@ -158,3 +158,38 @@ class User:
             unlocked_features={},
             is_guest=False,
         )
+
+    @classmethod
+    def create_guest(cls) -> User:
+        """Create a guest user.
+
+        Returns:
+            New guest User instance
+        """
+        guest_id = str(uuid4())[:8]
+        return cls(
+            id=f"guest_{guest_id}",
+            username=f"guest_{guest_id}",
+            nickname=f"Guest {guest_id}",
+            password_hash=None,
+            xp=0,
+            level=1,
+            balance=500,
+            inventory=[],
+            unlocked_features={},
+            is_guest=True,
+        )
+
+    def verify_password(self, password: str) -> bool:
+        """Verify password against stored hash.
+
+        Args:
+            password: Plain text password to verify
+
+        Returns:
+            True if password matches, False otherwise
+        """
+        if not self.password_hash:
+            return False
+        import bcrypt
+        return bcrypt.checkpw(password.encode(), self.password_hash)
