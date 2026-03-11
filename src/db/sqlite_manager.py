@@ -103,16 +103,14 @@ class SQLiteManager:
         -- Users table
         CREATE TABLE IF NOT EXISTS users (
             id TEXT PRIMARY KEY,
-            username TEXT UNIQUE NOT NULL,
-            nickname TEXT NOT NULL,
-            password_hash BLOB,
-            xp INTEGER DEFAULT 0 CHECK (xp >= 0),
-            level INTEGER DEFAULT 1 CHECK (level >= 1),
-            balance INTEGER DEFAULT 500 CHECK (balance >= 0),
+            name TEXT NOT NULL DEFAULT 'Player',
+            xp INTEGER DEFAULT 0,
+            level INTEGER DEFAULT 1,
+            balance INTEGER DEFAULT 500,
+            inventory JSON DEFAULT '[]',
+            unlocked_features JSON DEFAULT '{}',
             created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-            last_login TIMESTAMP,
-            is_guest BOOLEAN DEFAULT 0,
-            unlocked_features TEXT DEFAULT '{}' -- JSON
+            last_played TIMESTAMP
         );
 
         -- Inventory table
@@ -216,28 +214,6 @@ class SQLiteManager:
             description TEXT,
             attributes TEXT DEFAULT '{}' -- JSON
         );
-
-        -- Leaderboard
-        CREATE TABLE IF NOT EXISTS leaderboard (
-            user_id TEXT PRIMARY KEY,
-            username TEXT NOT NULL,
-            xp INTEGER DEFAULT 0,
-            balance INTEGER DEFAULT 0,
-            rank_xp INTEGER,
-            rank_wealth INTEGER,
-            last_updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-            FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
-        );
-
-        -- Activity log
-        CREATE TABLE IF NOT EXISTS activity_log (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            user_id TEXT,
-            action TEXT NOT NULL,
-            details TEXT, -- JSON
-            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-            FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE SET NULL
-        );
         """
         conn.executescript(schema_sql)
 
@@ -247,10 +223,6 @@ class SQLiteManager:
         CREATE INDEX IF NOT EXISTS idx_inventory_type ON inventory(item_type);
         CREATE INDEX IF NOT EXISTS idx_field_plots_user ON field_plots(user_id);
         CREATE INDEX IF NOT EXISTS idx_barn_slots_user ON barn_slots(user_id);
-        CREATE INDEX IF NOT EXISTS idx_activity_log_user ON activity_log(user_id);
-        CREATE INDEX IF NOT EXISTS idx_activity_log_created ON activity_log(created_at);
-        CREATE INDEX IF NOT EXISTS idx_leaderboard_xp ON leaderboard(xp DESC);
-        CREATE INDEX IF NOT EXISTS idx_leaderboard_balance ON leaderboard(balance DESC);
         """
         conn.executescript(indexes_sql)
 
