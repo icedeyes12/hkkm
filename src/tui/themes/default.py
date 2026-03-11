@@ -102,7 +102,7 @@ MainMenuScreen {
 
 #user-stats {
     height: auto;
-    background: $primary-dark;
+    background: $primary-darken-2;
     padding: 1;
     border-bottom: solid $border;
 }
@@ -122,7 +122,7 @@ MainMenuScreen {
 }
 
 ListView:focus {
-    background: $primary-dark;
+    background: $primary-darken-2;
 }
 
 ListItem {
