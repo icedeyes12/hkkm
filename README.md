@@ -105,8 +105,7 @@ hkkm/
 │   ├── db/               # SQLite database
 │   └── config/           # Settings
 ├── tests/                 # Test suite
-├── pyproject.toml         # Package config
-└── README_V2.md          # Detailed v2 docs
+└── pyproject.toml         # Package config
 ```
 
 ---
