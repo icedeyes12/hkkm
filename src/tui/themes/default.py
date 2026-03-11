@@ -52,39 +52,31 @@ Footer {
     color: $error;
 }
 
-/* Welcome Screen */
-WelcomeScreen {
+/* Start Screen */
+StartScreen {
     align: center middle;
 }
 
-WelcomeScreen .banner {
-    text-align: center;
+StartScreen Vertical {
+    width: auto;
+    height: auto;
+    align: center middle;
+}
+
+StartScreen .banner {
     color: $accent;
+    text-align: center;
     margin-bottom: 2;
 }
 
-WelcomeScreen Button {
+StartScreen .subtitle {
+    color: $text-muted;
+    text-align: center;
+    margin-bottom: 3;
+}
+
+StartScreen Button {
     width: 30;
-    margin: 1;
-}
-
-/* Auth Screens */
-LoginScreen, RegisterScreen {
-    align: center middle;
-}
-
-.auth-container {
-    width: 60;
-    height: auto;
-    border: solid $primary;
-    padding: 2;
-}
-
-.auth-container Input {
-    margin: 1 0;
-}
-
-.auth-container Button {
     margin: 1 0;
 }
 
