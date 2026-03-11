@@ -132,3 +132,29 @@ class User:
             user.last_login = datetime.fromisoformat(data["last_login"])
 
         return user
+
+    @classmethod
+    def create(cls, username: str, nickname: str, password: str) -> User:
+        """Create a new user with hashed password.
+
+        Args:
+            username: Unique username
+            nickname: Display name
+            password: Plain text password (will be hashed)
+
+        Returns:
+            New User instance ready to be saved
+        """
+        import bcrypt
+        password_hash = bcrypt.hashpw(password.encode(), bcrypt.gensalt())
+        return cls(
+            username=username,
+            nickname=nickname,
+            password_hash=password_hash,
+            xp=0,
+            level=1,
+            balance=500,
+            inventory=[],
+            unlocked_features={},
+            is_guest=False,
+        )
