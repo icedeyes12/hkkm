@@ -32,12 +32,6 @@ class StartScreen(Screen):
             yield Button("▶ Start Game", id="btn-start", variant="primary")
             yield Button("🗑 New Game (reset)", id="btn-reset", variant="error")
 
-    def on_button_pressed(self, event: Button.Pressed) -> None:
-        if event.button.id == "btn-start":
-            self.app.start_game()
-        elif event.button.id == "btn-reset":
-            self.app.reset_game()
-
 
 class HikikimoApp(App):
     """Single-player Hikikimo Life - no auth, no leaderboard."""
@@ -54,14 +48,17 @@ class HikikimoApp(App):
         self.player: User | None = None
 
     def compose(self) -> ComposeResult:
+        print("DEBUG: App composed")
         yield StartScreen()
 
     def on_mount(self):
+        print(">>> APP MOUNTED <<<")
         self.title = "Hikikimo Life v2"
         self.sub_title = "Single Player"
 
     def start_game(self):
         """Load or create single player save."""
+        print("DEBUG: start_game is being called")
         self.player = self.user_repo.get_single_player()
         if self.player is None:
             self.player = User.create_single_player()
