@@ -469,7 +469,17 @@ class SQLiteManager:
                     ],
                 )
 
+    def vacuum(self) -> None:
+        """Run VACUUM to optimize database."""
+        with self.get_connection() as conn:
+            conn.execute("VACUUM")
+
 
 def get_db() -> SQLiteManager:
     """Get the global database manager instance."""
+    return SQLiteManager()
+
+
+def init_database() -> SQLiteManager:
+    """Initialize database and return manager instance."""
     return SQLiteManager()
