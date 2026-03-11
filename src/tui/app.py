@@ -11,7 +11,6 @@ from textual.containers import Vertical
 from src.config.settings import get_settings
 from src.core.models.user import User
 from src.core.repositories.user_repository import UserRepository
-from src.db.sqlite_manager import get_db
 from src.tui.screens.main_menu_screen import MainMenuScreen
 from src.tui.themes.default import DEFAULT_CSS
 
@@ -21,13 +20,14 @@ class StartScreen(Screen):
 
     def compose(self) -> ComposeResult:
         with Vertical(classes="welcome-container"):
-            yield Static("""
-╔═══════════════════════════════════════╗
-║     🎮 HIKIKIMO LIFE v2 🎮            ║
-║                                       ║
-║   Terminal Life Simulation Game       ║
-╚═══════════════════════════════════════╝
-            "", classes="banner")
+            yield Static(
+                "\n╔═══════════════════════════════════════╗\n"
+                "║     🎮 HIKIKIMO LIFE v2 🎮            ║\n"
+                "║                                       ║\n"
+                "║   Terminal Life Simulation Game       ║\n"
+                "╚═══════════════════════════════════════╝\n",
+                classes="banner"
+            )
             yield Label("A chill life sim in your terminal", classes="subtitle")
             yield Button("▶ Start Game", id="btn-start", variant="primary")
             yield Button("🗑 New Game (reset)", id="btn-reset", variant="error")
@@ -62,14 +62,10 @@ class HikikimoApp(App):
 
     def start_game(self):
         """Load or create single player save."""
-        # Try to load existing player
         self.player = self.user_repo.get_single_player()
-        
         if self.player is None:
-            # Create new player
             self.player = User.create_single_player()
             self.user_repo.save_single_player(self.player)
-        
         self.push_screen(MainMenuScreen(self.player))
 
     def reset_game(self):
