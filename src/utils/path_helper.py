@@ -68,6 +68,17 @@ def ensure_dir(path: Path) -> Path:
     return path
 
 
+def ensure_data_dir() -> Path:
+    """Ensure main data directory exists, creating if necessary.
+
+    Returns:
+        Path to data directory
+    """
+    data_dir = _get_data_directory()
+    data_dir.mkdir(parents=True, exist_ok=True)
+    return data_dir
+
+
 def safe_filename(name: str) -> str:
     """Convert string to safe filename.
 
