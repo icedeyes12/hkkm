@@ -34,7 +34,6 @@ python main.py
 - **Casino Games**: Try your luck with slots, blackjack, and roulette
 - **Job System**: Work, trade, or take risks for rewards
 - **Progression**: Level up, earn XP, and unlock new features
-- **Social Features**: Leaderboards and user profiles
 - **Daily Rewards**: Login daily for bonus rewards
 
 ---
@@ -78,19 +77,30 @@ For detailed installation instructions, see [INSTALL.md](INSTALL.md).
 
 ## 🎯 How to Play
 
-`Note: This build is for testing and preview purposes only. Full gameplay is still under development 🛠️.`
+Hikikimo Life is a **single-player** terminal life simulation. Your progress is automatically saved to a local SQLite database.
 
-Currently available features:
+### Starting the Game
+1. Run `python run.py`
+2. Click **Start Game** on the welcome screen
+3. If you have a previous save, it loads automatically
+4. Otherwise, a new player is created with starting balance of 🪙500
 
-· Create an account or play as a guest
-· Navigate the menus (Job Center, Casino, Yard, Fishing, My Room, Shop, Daily, Leaderboard)
-· Trigger stub actions that show what features will look like
-· Try the hidden cheat codes to access the test center
+### Game Sections
 
-Cheat Codes:
+| Section | Description |
+|---------|-------------|
+| 💼 **Job Center** | Work for steady income, trade items, or take risks |
+| 🎰 **Casino** | Try your luck with slots, dice, and more |
+| 🌾 **Yard** | Plant crops and raise animals for profit |
+| 🎣 **Fishing** | Catch fish in different locations |
+| 🛒 **Shop** | Buy tools, seeds, bait, and more |
+| 🏆 **Stats** | View your progress (XP, level, balance) |
 
-· Type `titit` or `𓂸` at the main menu to access the test center
-· Test features include adding coins, XP, and resetting progress
+### Progression
+- Earn **XP** by working, fishing, farming, and gambling
+- **Level up** to unlock new features
+- **Balance** is your currency for buying items and upgrades
+- All progress **auto-saves** after every action
 
 ---
 
@@ -152,6 +162,86 @@ I also need help 😭
 ---
 
 ## 🔧 For Developers
+
+### Game Flow
+
+```mermaid
+flowchart TD
+    Start([Start Game]) --> LoadSave{Save exists?}
+    LoadSave -->|No| CreatePlayer[Create New Player]
+    LoadSave -->|Yes| LoadPlayer[Load Player Data]
+    CreatePlayer --> MainMenu
+    LoadPlayer --> MainMenu[Main Menu]
+    
+    MainMenu --> JobCenter[💼 Job Center]
+    MainMenu --> Casino[🎰 Casino]
+    MainMenu --> Yard[🌾 Yard/Farm]
+    MainMenu --> Fishing[🎣 Fishing]
+    MainMenu --> Shop[🛒 Shop]
+    
+    JobCenter --> Work[Work for Coins]
+    JobCenter --> Trade[Trade Items]
+    JobCenter --> Crime[Risk/Reward]
+    
+    Yard --> Farm[Plant Crops]
+    Yard --> Barn[Raise Animals]
+    
+    Casino --> Slots[Slot Machine]
+    Casino --> Dice[Dice Games]
+    
+    Work --> Save[(Auto Save)]
+    Farm --> Save
+    Fishing --> Save
+    Save --> MainMenu
+```
+
+### Architecture
+
+```mermaid
+flowchart TB
+    subgraph TUI["🖥️ TUI Layer (Textual)"]
+        Screens[Screens]
+        Widgets[Widgets]
+        CSS[Themes/CSS]
+    end
+    
+    subgraph Core["⚙️ Core Layer"]
+        Models[Data Models]
+        Services[Game Services]
+        Repos[Repositories]
+    end
+    
+    subgraph DB["🗄️ Database Layer"]
+        SQLite[(SQLite)]
+        Seeds[Seed Data]
+    end
+    
+    TUI -->|uses| Core
+    Core -->|queries| DB
+    Services -->|business logic| Models
+    Repos -->|CRUD| SQLite
+```
+
+### Data Flow
+
+```mermaid
+sequenceDiagram
+    participant Player as Player
+    participant TUI as TUI Screen
+    participant Service as Game Service
+    participant Repo as Repository
+    participant DB as SQLite
+    
+    Player->>TUI: Click "Work"
+    TUI->>Service: work(duration)
+    Service->>Service: Calculate reward
+    Service->>Repo: update(player)
+    Repo->>DB: UPDATE users SET...
+    DB-->>Repo: success
+    Repo-->>Service: player updated
+    Service-->>TUI: work complete
+    TUI-->>Player: Show reward + new balance
+```
 
 ### Project Structure (v2)
 
