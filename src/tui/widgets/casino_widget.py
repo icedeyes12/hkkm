@@ -11,7 +11,6 @@ from textual.reactive import reactive
 from textual.widgets import Button, Input, Label, Static
 
 from src.core.models.user import User
-from src.core.repositories.activity_repository import ActivityRepository
 from src.core.repositories.user_repository import UserRepository
 from src.core.services.economy_service import EconomyService
 

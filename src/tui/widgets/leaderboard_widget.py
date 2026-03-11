@@ -7,7 +7,7 @@ from textual.containers import Vertical
 from textual.widgets import Button, DataTable, Label, Static
 
 from src.core.models.user import User
-from src.core.repositories.leaderboard_repository import LeaderboardRepository
+from src.core.repositories.leaderboard_repository import UserRepository
 
 
 class LeaderboardWidget(Static):
@@ -16,7 +16,7 @@ class LeaderboardWidget(Static):
     def __init__(self, user: User):
         super().__init__()
         self.user = user
-        self.leaderboard_repo = LeaderboardRepository()
+        self.leaderboard_repo = UserRepository()
         self.current_tab = "xp"
 
     def compose(self) -> ComposeResult:

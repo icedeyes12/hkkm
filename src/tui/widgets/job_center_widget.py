@@ -11,7 +11,6 @@ from textual.reactive import reactive
 from textual.widgets import Button, Label, ProgressBar, Static
 
 from src.core.models.user import User
-from src.core.repositories.activity_repository import ActivityRepository
 from src.core.repositories.user_repository import UserRepository
 from src.core.services.economy_service import EconomyService
 
@@ -26,7 +25,6 @@ class JobCenterWidget(Static):
         super().__init__()
         self.user = user
         self.user_repo = UserRepository()
-        self.activity_repo = ActivityRepository()
         self.economy = EconomyService()
 
     def compose(self) -> ComposeResult:
@@ -91,7 +89,6 @@ class JobCenterWidget(Static):
             self.user.add_xp(xp)
 
         self.user_repo.update(self.user)
-        self.activity_repo.log(self.user.id, "work", {"times": times, "coins": total_coins, "xp": total_xp})
 
         result_static.update(f"✅ Worked {times}x: +{total_coins}🪙 +{total_xp}⭐")
         self._refresh_parent_stats()
@@ -117,7 +114,6 @@ class JobCenterWidget(Static):
                 self.user_repo.update(self.user)
             result_static.update(f"❌ {message}")
 
-        self.activity_repo.log(self.user.id, "crime", {"type": crime_type, "success": success, "coins": coins})
         self._refresh_parent_stats()
 
     def _refresh_parent_stats(self):

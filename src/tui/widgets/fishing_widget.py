@@ -11,7 +11,6 @@ from textual.reactive import reactive
 from textual.widgets import Button, Label, ProgressBar, Static
 
 from src.core.models.user import User
-from src.core.repositories.activity_repository import ActivityRepository
 from src.core.repositories.game_data_repository import GameDataRepository
 from src.core.repositories.inventory_repository import InventoryRepository, ItemType
 from src.core.repositories.user_repository import UserRepository
