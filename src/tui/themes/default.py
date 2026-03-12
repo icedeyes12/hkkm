@@ -58,8 +58,11 @@ StartScreen {
 }
 
 StartScreen Vertical {
-    width: auto;
+    width: 50;
     height: auto;
+    background: $surface;
+    border: solid $primary;
+    padding: 2;
     align: center middle;
 }
 
