@@ -15,7 +15,7 @@ StartScreen {
     align: center middle;
 }
 
-StartScreen Vertical {
+StartScreen .welcome-container {
     width: 50;
     height: auto;
     background: $primary-darken-2;
