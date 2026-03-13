@@ -20,17 +20,16 @@ class StartScreen(Screen):
 
     def compose(self) -> ComposeResult:
         with Vertical(classes="welcome-container"):
-            yield Static(
-                "\n╔═══════════════════════════════════════╗\n"
-                "║     🎮 HIKIKIMO LIFE v2 🎮            ║\n"
-                "║                                       ║\n"
-                "║   Terminal Life Simulation Game       ║\n"
-                "╚═══════════════════════════════════════╝\n",
-                classes="banner"
-            )
-            yield Label("A chill life sim in your terminal", classes="subtitle")
-            yield Button("▶ Start Game", id="btn-start", variant="primary")
-            yield Button("🗑 New Game (reset)", id="btn-reset", variant="error")
+            yield Static("HIKIKIMO LIFE v2", classes="banner")
+            yield Label("Terminal Life Simulation Game", classes="subtitle")
+            yield Button("Start Game", id="btn-start", variant="primary")
+            yield Button("New Game (reset)", id="btn-reset", variant="error")
+
+    def on_button_pressed(self, event: Button.Pressed) -> None:
+        if event.button.id == "btn-start":
+            self.app.start_game()
+        elif event.button.id == "btn-reset":
+            self.app.reset_game()
 
 
 class HikikimoApp(App):
@@ -48,27 +47,30 @@ class HikikimoApp(App):
         self.player: User | None = None
 
     def compose(self) -> ComposeResult:
-        print("DEBUG: App composed")
         yield StartScreen()
 
     def on_mount(self):
-        print(">>> APP MOUNTED <<<")
         self.title = "Hikikimo Life v2"
         self.sub_title = "Single Player"
 
     def start_game(self):
         """Load or create single player save."""
-        print("DEBUG: start_game is being called")
-        self.player = self.user_repo.get_single_player()
-        if self.player is None:
-            self.player = User.create_single_player()
-            self.user_repo.save_single_player(self.player)
-        self.push_screen(MainMenuScreen(self.player))
+        try:
+            self.player = self.user_repo.get_single_player()
+            if self.player is None:
+                self.player = User.create_single_player()
+                self.user_repo.save_single_player(self.player)
+            self.push_screen(MainMenuScreen(self.player))
+        except Exception as e:
+            print(f"Error starting game: {e}")
 
     def reset_game(self):
         """Reset all progress."""
-        self.user_repo.delete_single_player()
-        self.start_game()
+        try:
+            self.user_repo.delete_single_player()
+            self.start_game()
+        except Exception as e:
+            print(f"Error resetting game: {e}")
 
     def action_help(self):
         from src.tui.screens.help_screen import HelpScreen
